@@ -1,0 +1,13 @@
+---
+ - hosts: copinb
+   user: devops
+   become: yes
+   become_method: sudo
+   tasks:
+     - name: Copy a file to remote server.
+       copy: src={{ item.src }} dest={{ item.dest }}
+       with_items:
+         - { src: '/root/patch_folder/october_2022/virtual_channel_Changes_in_priority_logic/backup/{{ inventory_hostname }}/DialerController.php', dest: '/home/{{ inventory_hostname }}/application/app/Http/Controllers/' }
+         - { src: '/root/patch_folder/october_2022/virtual_channel_Changes_in_priority_logic/backup/{{ inventory_hostname }}/dialer.blade.php', dest: '/home/{{ inventory_hostname }}/application/resources/views/layout/module/dashboard/' }
+
+

@@ -1,0 +1,12 @@
+---
+ - hosts: srm copinb
+   user: devops
+   become: yes
+   become_method: sudo
+   tasks:
+     - name: Fetch items from the remote and save it in local
+       synchronize:  src={{ item }} dest=/root/patch_folder/october_2022/virtual_channel_Changes_in_priority_logic/backup/{{ inventory_hostname }}/ mode=pull
+       with_items:
+         - "/home/{{ inventory_hostname }}/application/app/Http/Controllers/DialerController.php"
+         - "/home/{{ inventory_hostname }}/application/resources/views/layout/module/dashboard/dialer.blade.php"
+
