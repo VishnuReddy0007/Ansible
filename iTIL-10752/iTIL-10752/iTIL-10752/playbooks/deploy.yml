@@ -1,0 +1,11 @@
+---
+ - hosts: 10.43.11.57
+   user:
+   become: yes
+   become_method: sudo
+   tasks:
+     - name: Copy a file to remote server.
+       copy: src={{ item.src }} dest={{ item.dest }}
+       with_items:
+         - { src: '/root/patch_folder/october_2022/iTIL-10752/deploy/agentactivity.blade.php/', dest: '/home/{{ inventory_hostname }}/application/resources/views/layout/module/dialer/'}
+         - { src: '/root/patch_folder/october_2022/iTIL-10752/deploy/ReportLib.php/', dest: '/home/{{ inventory_hostname }}/application/app/Jobs/'}
