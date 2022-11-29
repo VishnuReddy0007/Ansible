@@ -1,0 +1,17 @@
+---
+ - hosts: cop prime vrm
+   user: devops
+   become: yes
+   become_method: sudo
+   vars_prompt:
+     - name: "command"
+       prompt: "Please Enter The Command."
+       private: no
+   tasks:
+    - name: Run Command From Application Location
+      command: "{{ command }}"
+      args:
+        chdir: /home/{{ inventory_hostname }}/application/
+      register: command_output
+    - debug: msg="{{command_output.stdout}}"
+
